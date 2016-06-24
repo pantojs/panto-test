@@ -4,7 +4,7 @@
   "description": "Test project for panto",
   "main": "index.js",
   "scripts": {
-    "test": "eslint && mocha"
+    "test": "panto && mocha"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "panto-transformer-less": "^0.1.2",
     "panto-transformer-read": "^0.3.1",
     "panto-transformer-uglify": "^0.1.2",
-    "panto-transformer-write": "^0.3.2"
+    "panto-transformer-write": "^0.3.2",
+    "rimraf": "^2.5.2"
   }
 }

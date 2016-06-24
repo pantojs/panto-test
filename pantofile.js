@@ -11,6 +11,9 @@
  */
 'use strict';
 
+const rimraf = require('rimraf');
+rimraf.sync('output');
+
 module.exports = panto => {
     panto.loadTransformer('read');
     panto.loadTransformer('write');
