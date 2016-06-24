@@ -1,0 +1,9 @@
+language: node_js
+before_install:
+  - npm install -g mocha
+  - npm install -g panto-cli
+sudo: false
+script: panto && mocha
+node_js:
+  - 6
+  - stable

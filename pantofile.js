@@ -14,6 +14,15 @@
 module.exports = panto => {
     panto.loadTransformer('read');
     panto.loadTransformer('write');
+    panto.loadTransformer('uglify');
+    panto.loadTransformer('less');
 
-    panto.pick('*.js').pipe(panto.read()).pipe(panto.write()).end('*.js');
+    panto.pick('src/*.js').pipe(panto.read()).pipe(panto.uglify()).pipe(panto.write()).end('*.js');
+    panto.pick('src/*.less').pipe(panto.read()).pipe(panto.less({
+        lessOptions: {
+            compress: true
+        }
+    })).pipe(panto.write({
+        destname: file => file.filename.replace(/\.less/, '.css')
+    })).end('*.js');
 };
