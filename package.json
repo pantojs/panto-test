@@ -1,0 +1,27 @@
+{
+  "name": "panto-test",
+  "version": "0.0.1",
+  "description": "Test project for panto",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pantojs/panto-test.git"
+  },
+  "keywords": [
+    "test",
+    "panto"
+  ],
+  "author": "yanni4night@gmail.com",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/pantojs/panto-test/issues"
+  },
+  "dependencies": {
+    "panto": "0.0.7",
+    "panto-transformer-read": "^0.3.1",
+    "panto-transformer-write": "^0.3.2"
+  }
+}
