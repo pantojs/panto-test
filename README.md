@@ -3,8 +3,17 @@
 
 Test project for panto.
 
->$npm install mocha panto-cli -g
->$panto && mocha
+Install dependencies:
+
+```
+$npm install mocha panto-cli -g
+```
+
+Test:
+
+```
+$panto && mocha
+```
 
 [npm-url]: https://npmjs.org/package/panto-test
 [downloads-image]: http://img.shields.io/npm/dm/panto-test.svg
