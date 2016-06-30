@@ -18,14 +18,27 @@ module.exports = panto => {
     panto.loadTransformer('read');
     panto.loadTransformer('write');
     panto.loadTransformer('uglify');
+    panto.loadTransformer('css-sprites');
+    panto.loadTransformer('filter');
     panto.loadTransformer('less');
 
+    panto.pick('src/**/*.{jpg,png,gif}').pipe(panto.read()).pipe(panto.write()).end('image');
+
     panto.pick('src/*.js').pipe(panto.read()).pipe(panto.uglify()).pipe(panto.write()).end('*.js');
-    panto.pick('src/*.less').pipe(panto.read()).pipe(panto.less({
+    
+    const cssAndSprites = panto.pick('src/*.less').pipe(panto.read()).pipe(panto.less({
         lessOptions: {
             compress: true
         }
-    })).pipe(panto.write({
+    })).pipe(panto.cssSprites());
+
+
+    const sprites = cssAndSprites.pipe(panto.filter({pattern:'src/**/*.{png,jpg,gif}'}));
+    const css = cssAndSprites.pipe(panto.filter({pattern:'src/**/*.less'}));
+    
+    sprites.pipe(panto.write()).end('sprites');
+
+    css.pipe(panto.write({
         destname: file => file.filename.replace(/\.less/, '.css')
-    })).end('*.js');
+    })).end('*.css');
 };
