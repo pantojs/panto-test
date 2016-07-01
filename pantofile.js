@@ -33,7 +33,7 @@ module.exports = panto => {
     })).pipe(panto.cssSprites());
 
 
-    const sprites = cssAndSprites.pipe(panto.filter({pattern:'src/**/*.{png,jpg,gif}'}));
+    const sprites = cssAndSprites.pipe(panto.filter({pattern:'**/*.{png,jpg,gif}'}));
     const css = cssAndSprites.pipe(panto.filter({pattern:'src/**/*.less'}));
     
     sprites.pipe(panto.write()).end('sprites');

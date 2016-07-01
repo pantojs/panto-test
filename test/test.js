@@ -27,7 +27,7 @@ describe('build', () => {
             const css = __dirname + '/../output/src/less.css';
             assert.ok(fs.existsSync(css));
             const content = fs.readFileSync(css, 'utf8');
-            assert.deepEqual(content.length, 2396);
+            assert.deepEqual(content.length, 2336);
         });
     });
 });
