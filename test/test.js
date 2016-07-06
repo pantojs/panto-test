@@ -6,8 +6,8 @@
  * 2016-06-24[21:12:27]:revised
  *
  * @author yanni4night@gmail.com
- * @version 1.0.0
- * @since 1.0.0
+ * @version 0.0.1
+ * @since 0.0.1
  */
 'use strict';
 const assert = require('assert');
@@ -27,7 +27,7 @@ describe('build', () => {
             const css = __dirname + '/../output/src/less.css';
             assert.ok(fs.existsSync(css));
             const content = fs.readFileSync(css, 'utf8');
-            assert.deepEqual(content.length, 2336);
+            assert.deepEqual(content.split('\n').length, 1);
         });
     });
 });
