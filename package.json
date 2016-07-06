@@ -20,8 +20,8 @@
     "url": "https://github.com/pantojs/panto-test/issues"
   },
   "dependencies": {
-    "panto": "0.0.11",
-    "panto-transformer-css-sprites": "0.0.2",
+    "panto": "0.0.12",
+    "panto-transformer-css-sprites": "0.0.3",
     "panto-transformer-filter": "^0.1.3",
     "panto-transformer-less": "^0.1.2",
     "panto-transformer-read": "^0.3.2",
