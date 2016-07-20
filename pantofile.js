@@ -12,7 +12,10 @@
 'use strict';
 
 const rimraf = require('rimraf');
-rimraf.sync('output');
+
+rimraf.sync('output', {
+    force: true
+});
 
 module.exports = panto => {
     panto.loadTransformer('read');
@@ -22,23 +25,27 @@ module.exports = panto => {
     panto.loadTransformer('filter');
     panto.loadTransformer('less');
 
-    panto.pick('src/**/*.{jpg,png,gif}').pipe(panto.read()).pipe(panto.write()).end('image');
+    panto.pick('src/**/*.{jpg,png,gif}').tag('img').read().write();
 
-    panto.pick('src/*.js').pipe(panto.read()).pipe(panto.uglify()).pipe(panto.write()).end('*.js');
-    
-    const cssAndSprites = panto.pick('src/*.less').pipe(panto.read()).pipe(panto.less({
+    panto.pick('src/*.js').tag('js').read().uglify().write();
+
+    const cssAndSprites = panto.pick('src/*.less').tag('css').read().less({
         lessOptions: {
             compress: true
         }
-    })).pipe(panto.cssSprites());
+    }).cssSprites();
 
 
-    const sprites = cssAndSprites.pipe(panto.filter({pattern:'**/*.{png,jpg,gif}'}));
-    const css = cssAndSprites.pipe(panto.filter({pattern:'src/**/*.less'}));
-    
-    sprites.pipe(panto.write()).end('sprites');
+    const sprites = cssAndSprites.filter({
+        pattern: '**/*.{png,jpg,gif}'
+    });
+    const css = cssAndSprites.filter({
+        pattern: 'src/**/*.less'
+    });
 
-    css.pipe(panto.write({
+    sprites.write();
+
+    css.write({
         destname: file => file.filename.replace(/\.less/, '.css')
-    })).end('*.css');
+    });
 };
